@@ -1,9 +1,3 @@
-theme: jekyll-theme-minimal
-title: Namratas homepage
-description: Bookmark this to keep an eye on my project updates!
-
-
-
-
-
-
+title: "Namrata Homepage"
+description: "Showcasing my projects and skills"
+theme: minima   # A simple, clean theme that GitHub Pages supports
