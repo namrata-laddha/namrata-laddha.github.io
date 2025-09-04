@@ -1,4 +1,4 @@
 title: "Namrata Homepage"
 description: "Showcasing my projects and skills"
-theme: minima   # A simple, clean theme that GitHub Pages supports
+theme: jekyll-theme-cayman
 markdown: kramdown
