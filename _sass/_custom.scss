@@ -1,0 +1,434 @@
+/*******************************************************************************
+ * Site design layer — "soft modern cards"
+ *
+ * Imported last in assets/css/main.scss so it wins over the upstream al-folio
+ * rules without editing them. Keeping the design in one file means al-folio can
+ * still be updated from upstream with minimal conflict.
+ *
+ * Everything here reads from the tokens defined in _variables.scss and mapped to
+ * CSS custom properties in _themes.scss. No hardcoded colors below this line.
+ ******************************************************************************/
+
+/* ---------------------------------------------------------------------------
+ * Typography
+ * ------------------------------------------------------------------------- */
+
+body {
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Helvetica,
+    Arial,
+    sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.card-title,
+.post-title,
+.navbar-brand {
+  font-family: inherit;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+h1,
+.post-title {
+  font-size: 2.25rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+
+h3 {
+  font-size: 1.2rem;
+  margin-top: 1.75rem;
+}
+
+/* Long-form body copy gets a comfortable measure. Cards and grids opt out. */
+.post > article > p,
+.post > article > ul,
+.post > article > ol {
+  max-width: 68ch;
+}
+
+/* Links: accent colored, underline only on hover so body copy stays calm. */
+a,
+table.table a {
+  text-decoration: none;
+  transition: color var(--transition-fast) var(--ease-out);
+
+  &:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+    text-decoration-thickness: 1px;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * Cards — the core of the visual language
+ * ------------------------------------------------------------------------- */
+
+.card {
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-rest);
+  overflow: hidden;
+  transition:
+    transform var(--transition-base) var(--ease-out),
+    box-shadow var(--transition-base) var(--ease-out),
+    border-color var(--transition-base) var(--ease-out);
+
+  .card-body {
+    padding: 1.4rem 1.5rem;
+  }
+
+  .card-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .card-text {
+    color: var(--global-text-color-light);
+    font-size: 0.94rem;
+    line-height: 1.6;
+    margin-bottom: 0;
+  }
+
+  .card-img,
+  .card-img-top {
+    padding-top: 0;
+    border-radius: 0;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    width: 100%;
+  }
+}
+
+/* Lift on hover. Only cards that are actually links get the affordance. */
+.card.hoverable {
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--accent-soft-border);
+  }
+
+  &:hover .card-title {
+    color: var(--global-theme-color);
+  }
+}
+
+/* Card grids need breathing room between rows. */
+.projects .row > .col,
+.projects .row > [class^="col-"] {
+  margin-bottom: 1.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .card.hoverable:hover {
+    transition: none;
+    transform: none;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * Navbar — slim and translucent
+ * ------------------------------------------------------------------------- */
+
+.navbar {
+  opacity: 1; /* upstream sets 0.95, which greys out the text */
+  background-color: color-mix(in srgb, var(--global-bg-color) 82%, transparent);
+  backdrop-filter: saturate(180%) blur(12px);
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
+  border-bottom: 1px solid var(--surface-border);
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+}
+
+@supports not (backdrop-filter: blur(12px)) {
+  .navbar {
+    background-color: var(--global-bg-color);
+  }
+}
+
+.navbar.navbar-light {
+  .navbar-brand {
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  .navbar-nav .nav-item .nav-link {
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding-left: 0.9rem;
+    padding-right: 0.9rem;
+    transition: color var(--transition-fast) var(--ease-out);
+  }
+
+  .navbar-nav .nav-item.active .nav-link {
+    color: var(--global-theme-color);
+    font-weight: 600;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * About page
+ * ------------------------------------------------------------------------- */
+
+.profile {
+  img {
+    /* !important is required: al-folio applies Bootstrap's .rounded utility to
+       the profile image, and that ships border-radius with !important. */
+    border-radius: var(--radius-md) !important;
+    box-shadow: var(--shadow-rest);
+  }
+
+  .more-info {
+    font-family: inherit;
+    font-size: 0.88rem;
+    color: var(--global-text-color-light);
+    margin-top: 0.9rem;
+    line-height: 1.55;
+
+    p {
+      display: block;
+      margin: 0;
+    }
+  }
+}
+
+.post-header .desc {
+  color: var(--global-text-color-light);
+  font-size: 1.05rem;
+  margin-top: 0.35rem;
+}
+
+/* Social row under the bio */
+.social {
+  margin-top: 2.5rem;
+
+  .contact-icons {
+    font-size: 1.6rem;
+
+    a {
+      margin: 0 0.4rem;
+      transition:
+        transform var(--transition-fast) var(--ease-out),
+        color var(--transition-fast) var(--ease-out);
+      display: inline-block;
+
+      &:hover {
+        transform: translateY(-2px);
+        text-decoration: none;
+      }
+    }
+  }
+
+  .contact-note {
+    color: var(--global-text-color-light);
+    font-size: 0.9rem;
+    margin-top: 0.6rem;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * Publications
+ * ------------------------------------------------------------------------- */
+
+.publications {
+  ol.bibliography {
+    li {
+      border: 1px solid var(--surface-border);
+      border-radius: var(--radius-md);
+      background-color: var(--global-card-bg-color);
+      box-shadow: var(--shadow-rest);
+      padding: 1.3rem 1.5rem;
+      margin-bottom: 1.1rem;
+      transition:
+        box-shadow var(--transition-base) var(--ease-out),
+        border-color var(--transition-base) var(--ease-out);
+
+      &:hover {
+        box-shadow: var(--shadow-hover);
+        border-color: var(--accent-soft-border);
+      }
+
+      .title {
+        font-weight: 600;
+        letter-spacing: -0.015em;
+        line-height: 1.35;
+      }
+
+      .author {
+        color: var(--global-text-color-light);
+        font-size: 0.93rem;
+      }
+
+      /* The site owner's own name, bolded by jekyll-scholar */
+      .author > em {
+        font-style: normal;
+        font-weight: 600;
+        color: var(--global-text-color);
+        border-bottom: 1px solid var(--accent-soft-border);
+      }
+
+      .periodical {
+        color: var(--global-text-color-light);
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  /* "Preprint" style abbreviation chips down the left margin */
+  .bibliography .abbr abbr a,
+  .bibliography abbr {
+    background-color: var(--accent-soft);
+    border: 1px solid var(--accent-soft-border);
+    border-radius: var(--radius-sm);
+    color: var(--global-theme-color);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    padding: 0.15rem 0.5rem;
+    text-decoration: none;
+  }
+
+  /* Abstract / link buttons under each entry */
+  .links a.btn {
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--surface-border);
+    color: var(--global-theme-color);
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 0.15rem 0.6rem;
+    transition:
+      background-color var(--transition-fast) var(--ease-out),
+      border-color var(--transition-fast) var(--ease-out);
+
+    &:hover {
+      background-color: var(--accent-soft);
+      border-color: var(--accent-soft-border);
+      text-decoration: none;
+    }
+  }
+}
+
+/* Year headings in the bibliography */
+.publications h2.bibliography {
+  color: var(--global-text-color-light);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ---------------------------------------------------------------------------
+ * CV
+ * ------------------------------------------------------------------------- */
+
+.cv {
+  .card {
+    box-shadow: var(--shadow-rest);
+  }
+
+  .card-title {
+    font-size: 1.15rem;
+    letter-spacing: -0.015em;
+  }
+
+  /* Skill keyword pills */
+  .badge,
+  .list-inline-item .badge {
+    background-color: var(--accent-soft) !important;
+    border: 1px solid var(--accent-soft-border);
+    border-radius: var(--radius-sm);
+    color: var(--global-theme-color) !important;
+    font-weight: 500;
+    font-size: 0.78rem;
+    padding: 0.3rem 0.6rem;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * Footer
+ * ------------------------------------------------------------------------- */
+
+footer.fixed-bottom,
+footer.sticky-bottom {
+  background-color: var(--global-footer-bg-color);
+  border-top: 1px solid var(--surface-border);
+  color: var(--global-footer-text-color);
+  font-size: 0.85rem;
+  padding: 1rem 0;
+
+  a {
+    color: var(--global-footer-link-color);
+
+    &:hover {
+      color: var(--global-theme-color);
+    }
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * Misc surfaces
+ * ------------------------------------------------------------------------- */
+
+figure img,
+img.img-fluid,
+.post img {
+  border-radius: var(--radius-md);
+}
+
+pre,
+code {
+  border-radius: var(--radius-sm);
+}
+
+blockquote {
+  border-left: 3px solid var(--accent-soft-border);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 0.75rem 1.25rem;
+}
+
+table {
+  th {
+    border-bottom: 1px solid var(--surface-border);
+    font-size: 0.82rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--global-text-color-light);
+  }
+
+  td {
+    border-bottom: 1px solid var(--surface-border);
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+}
+
+/* Visible keyboard focus, which the theme otherwise leaves to the browser. */
+a:focus-visible,
+button:focus-visible,
+.card.hoverable:focus-visible {
+  outline: 2px solid var(--global-theme-color);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}

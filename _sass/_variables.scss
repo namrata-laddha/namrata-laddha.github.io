@@ -32,10 +32,48 @@ $grey-900: #212529;
 $white-color: #ffffff !default;
 $black-color: #000000 !default;
 
+// ---------------------------------------------------------------------------
+// Site palette
+// ---------------------------------------------------------------------------
+// The single accent. Everything interactive (links, hover, tags, active nav)
+// derives from this, so changing this one value re-themes the whole site.
+$accent: #1f6f8b !default; // deep slate teal
+$accent-dark-mode: #58b6d4 !default; // lighter for contrast on dark backgrounds
+
+// Light mode surfaces
+$page-bg-light: #fbfbfc !default; // page sits slightly off pure white
+$surface-light: #ffffff !default; // cards lift by being brighter than the page
+$ink-light: #17191c !default; // near-black, easier on the eye than #000
+$ink-muted-light: #5f6672 !default;
+$border-light: #e6e8ec !default;
+
+// Dark mode surfaces
+$page-bg-dark: #14161a !default;
+$surface-dark: #1c1f25 !default;
+$ink-dark: #e8eaed !default;
+$ink-muted-dark: #9aa2af !default;
+$border-dark: #2b3038 !default;
+
+// Shape
+$radius-sm: 6px !default; // tags, buttons, code
+$radius-md: 12px !default; // cards, images
+$radius-lg: 18px !default; // large panels
+
+// Depth — soft means wide blur at low opacity, never a hard drop shadow
+$shadow-rest: 0 1px 2px rgba(16, 24, 40, 0.04), 0 4px 16px rgba(16, 24, 40, 0.06) !default;
+$shadow-hover: 0 2px 4px rgba(16, 24, 40, 0.06), 0 12px 32px rgba(16, 24, 40, 0.1) !default;
+$shadow-rest-dark: 0 1px 2px rgba(0, 0, 0, 0.3), 0 4px 16px rgba(0, 0, 0, 0.28) !default;
+$shadow-hover-dark: 0 2px 4px rgba(0, 0, 0, 0.36), 0 12px 32px rgba(0, 0, 0, 0.42) !default;
+
+// Motion
+$ease-out: cubic-bezier(0.22, 0.61, 0.36, 1) !default;
+$transition-fast: 0.15s !default;
+$transition-base: 0.25s !default;
+
 // Theme colors
 
-$code-bg-color-light: rgba($purple-color, 0.05);
-$code-bg-color-dark: #2c3237 !default;
+$code-bg-color-light: rgba($accent, 0.06);
+$code-bg-color-dark: #22262d !default;
 
 // Font awesome location
 $fa-font-path: "../webfonts";
