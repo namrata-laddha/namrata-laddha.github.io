@@ -95,18 +95,21 @@ table.table a {
 
   .card-body {
     padding: 1.4rem 1.5rem;
+
+    /* Nested under .card-body deliberately: mdbootstrap ships
+       `.card .card-body .card-text` with a hardcoded grey that fails contrast
+       on both themes, and it beats a plain `.card .card-text` on specificity. */
+    .card-text {
+      color: var(--global-text-color-light);
+      font-size: 0.94rem;
+      line-height: 1.6;
+      margin-bottom: 0;
+    }
   }
 
   .card-title {
     font-size: 1.1rem;
     margin-bottom: 0.5rem;
-  }
-
-  .card-text {
-    color: var(--global-text-color-light);
-    font-size: 0.94rem;
-    line-height: 1.6;
-    margin-bottom: 0;
   }
 
   .card-img,
