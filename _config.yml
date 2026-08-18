@@ -64,7 +64,9 @@ max_width: 930px
 # see https://schema.org/docs/faq.html for more information
 serve_og_meta: true # Include Open Graph meta tags in the HTML head
 serve_schema_org: true # Include Schema.org in the HTML head
-og_image: /assets/img/og-preview.png # The site-wide (default for all links) Open Graph preview image
+# Must be an ABSOLUTE url: _includes/metadata.liquid emits this value verbatim
+# without prepending site.url, and social scrapers reject relative paths.
+og_image: https://namrata-laddha.github.io/assets/img/og-preview.png # The site-wide (default for all links) Open Graph preview image
 
 # -----------------------------------------------------------------------------
 # Analytics and search engine verification
