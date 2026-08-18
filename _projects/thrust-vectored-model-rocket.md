@@ -25,9 +25,9 @@ The vehicle steers itself during powered flight and recovers itself afterwards. 
 
 ## Results
 
-| Metric | Value |
-| :----- | :---- |
-| Maximum thrust | 384 N |
-| Total impulse | 320 N-s |
+| Metric         | Value   |
+| :------------- | :------ |
+| Maximum thrust | 384 N   |
+| Total impulse  | 320 N-s |
 
 Flight testing validated both the thrust vectoring system's contribution to flight stability and the reliability of the recovery sequence.

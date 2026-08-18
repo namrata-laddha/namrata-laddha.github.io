@@ -28,17 +28,17 @@ Two gotchas, both local-only — CI on Ubuntu is unaffected:
 
 ## Where things live
 
-| What | Where |
-| :--- | :--- |
-| Site config, nav, feature toggles | `_config.yml` |
-| Bio / landing page | `_pages/about.md` |
-| CV content | `assets/json/resume.json` (jsonresume format) |
-| CV page settings and PDF link | `_pages/cv.md`, `assets/pdf/` |
-| Publications | `_bibliography/papers.bib` |
-| Projects | `_projects/*.md` |
-| Blog posts | `_posts/` (empty for now) |
-| Social links | `_data/socials.yml` |
-| **Design layer** | `_sass/_custom.scss` |
+| What                                  | Where                                         |
+| :------------------------------------ | :-------------------------------------------- |
+| Site config, nav, feature toggles     | `_config.yml`                                 |
+| Bio / landing page                    | `_pages/about.md`                             |
+| CV content                            | `assets/json/resume.json` (jsonresume format) |
+| CV page settings and PDF link         | `_pages/cv.md`, `assets/pdf/`                 |
+| Publications                          | `_bibliography/papers.bib`                    |
+| Projects                              | `_projects/*.md`                              |
+| Blog posts                            | `_posts/` (empty for now)                     |
+| Social links                          | `_data/socials.yml`                           |
+| **Design layer**                      | `_sass/_custom.scss`                          |
 | Design tokens (color, radius, shadow) | `_sass/_variables.scss`, `_sass/_themes.scss` |
 
 ### Two things worth knowing
